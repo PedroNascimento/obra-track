@@ -1,2 +1,3 @@
 // Infrastructure Layer — PDF Generator
-export * from "./expense-report.generator";
+export { generateExpenseReportPDF } from "./expense-report.generator";
+export type { GenerateReportInput, ExpenseReportItem } from "./expense-report.generator";

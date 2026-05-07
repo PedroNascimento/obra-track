@@ -1,4 +1,4 @@
-// Infrastructure Layer — Repositories
-export * from "./prisma-expense.repository";
-export * from "./prisma-user.repository";
-export * from "./prisma-category.repository";
+// Infrastructure Layer — Repositories (implementações concretas)
+export { PrismaExpenseRepository } from "./prisma-expense.repository";
+export { PrismaUserRepository } from "./prisma-user.repository";
+export { PrismaCategoryRepository } from "./prisma-category.repository";

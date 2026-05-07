@@ -1,5 +1,4 @@
 // Domain Layer — Repository Interfaces
-// Exporta todos os contratos de repositório
-export * from "./expense.repository";
-export * from "./user.repository";
-export * from "./category.repository";
+export type { IExpenseRepository, FinancialSummary, ExpenseSummaryByType, ExpenseSummaryByCategory, TimelineEntry } from "./expense.repository";
+export type { IUserRepository } from "./user.repository";
+export type { ICategoryRepository } from "./category.repository";

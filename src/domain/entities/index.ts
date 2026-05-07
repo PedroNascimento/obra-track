@@ -1,5 +1,7 @@
 // Domain Layer — Entities
-// Exporta todas as entidades do domínio
-export * from "./expense.entity";
-export * from "./user.entity";
-export * from "./category.entity";
+export { Expense } from "./expense.entity";
+export type { ExpenseProps } from "./expense.entity";
+export { User } from "./user.entity";
+export type { UserProps } from "./user.entity";
+export { Category } from "./category.entity";
+export type { CategoryProps } from "./category.entity";
