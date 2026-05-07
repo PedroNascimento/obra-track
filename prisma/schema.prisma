@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  directUrl         = env("DIRECT_URL")
+  // DATABASE_URL  → Transaction Pooler (porta 6543) com ?pgbouncer=true → queries em produção/serverless
+  // DIRECT_URL    → Session Pooler (porta 5432) → usado por prisma migrate e prisma db push
+}
+
+model User {
+  id           String     @id @default(uuid())
+  name         String
+  email        String     @unique
+  passwordHash String     @map("password_hash")
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+  expenses     Expense[]
+  categories   Category[]
+
+  @@map("users")
+}
+
+model Expense {
+  id          String      @id @default(uuid())
+  userId      String      @map("user_id")
+  type        ExpenseType
+  categoryId  String?     @map("category_id")
+  description String
+  amount      Decimal     @db.Decimal(10, 2)
+  expenseDate DateTime    @map("expense_date")
+  createdAt   DateTime    @default(now()) @map("created_at")
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@map("expenses")
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  userId    String    @map("user_id")
+  name      String
+  color     String    @default("#f97316")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expenses Expense[]
+
+  @@map("categories")
+}
+
+enum ExpenseType {
+  material
+  pedreiro
+  servente
+  alimentacao
+  combustivel
+  outro
+}
