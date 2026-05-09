@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏗️ ObraTrack
 
-## Getting Started
+**Gestão Financeira Inteligente para Obras e Reformas.**
 
-First, run the development server:
+O ObraTrack é uma solução moderna desenvolvida para resolver o caos financeiro em canteiros de obras. Ele permite que proprietários e gestores tenham controle total sobre gastos com materiais, mão de obra e serviços, oferecendo uma visão clara da saúde financeira do projeto em tempo real.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Principais Funcionalidades
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **📊 Dashboard Estratégico:** Visualize o total gasto, a distribuição por categorias e a evolução mensal através de gráficos intuitivos.
+- **💸 Gestão de Despesas:** Cadastro detalhado de gastos com suporte a categorização, datas retroativas e formatação inteligente de moeda.
+- **📂 Categorização Inteligente:** Organize seus custos em Material, Pedreiro, Servente, Alimentação, Combustível e outros.
+- **📄 Relatórios PDF:** Gere relatórios profissionais detalhados para prestação de contas ou arquivo pessoal com apenas um clique.
+- **🔐 Autenticação Segura:** Sistema completo de Login e Cadastro utilizando JWT e proteção de rotas via Middleware.
+- **📱 Interface Responsiva:** Design premium (Glassmorphism & Dark Mode ready) otimizado para Desktop e dispositivos móveis.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Stack Tecnológica
 
-To learn more about Next.js, take a look at the following resources:
+- **Core:** [Next.js 15](https://nextjs.org/) (App Router), [TypeScript](https://www.typescriptlang.org/)
+- **Estilização:** [Tailwind CSS](https://tailwindcss.com/)
+- **Banco de Dados:** [PostgreSQL](https://www.postgresql.org/) (via [Supabase](https://supabase.com/))
+- **ORM:** [Prisma](https://www.prisma.io/)
+- **Autenticação:** [JWT](https://jwt.io/) & [Bcryptjs](https://github.com/dcodeIO/bcrypt.js)
+- **Formulários:** [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)
+- **Ícones:** [Lucide React](https://lucide.dev/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧪 Qualidade e Testes
 
-## Deploy on Vercel
+Este projeto segue rigorosos padrões de qualidade, contando com uma suíte de testes automatizados:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **E2E (End-to-End):** Utilizando [Playwright](https://playwright.dev/) para validar fluxos críticos como Cadastro, Login e Criação de Despesas.
+- **Unitários:** Utilizando [Vitest](https://vitest.dev/) para garantir a integridade das regras de negócio na camada de Domínio e Casos de Uso.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🏗️ Arquitetura
+
+O projeto foi construído seguindo princípios de **Clean Architecture** e **SOLID**, separando claramente as responsabilidades:
+
+- `domain`: Entidades de negócio e interfaces de repositórios (regras puras).
+- `application`: Casos de uso e DTOs.
+- `infrastructure`: Implementações de banco de dados e serviços externos.
+- `presentation`: Componentes React, Hooks e lógica de UI.
+
+---
+
+## ⚙️ Como Executar o Projeto
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/obra-track.git
+   ```
+
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure as Variáveis de Ambiente:**
+   Renomeie o arquivo `.env.example` para `.env.local` e preencha as credenciais do seu banco de dados PostgreSQL.
+
+4. **Execute as migrações do Banco:**
+   ```bash
+   npx prisma migrate dev
+   ```
+
+5. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
+
+6. **Rodar Testes:**
+   ```bash
+   npm run test        # Testes unitários
+   npm run test:e2e    # Testes E2E (Playwright)
+   ```
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+Desenhado com ❤️ por [Pedro](https://github.com/seu-usuario).
