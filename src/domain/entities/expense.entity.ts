@@ -34,12 +34,13 @@ export class Expense {
   get createdAt(): Date { return this._props.createdAt; }
 
   // ─── Método de criação com validação ────────────────────────
-  static create(props: Omit<ExpenseProps, "createdAt"> & { createdAt?: Date }): Expense {
-    Expense.validate(props);
+  static create(props: Omit<ExpenseProps, "id" | "createdAt"> & { id?: string, createdAt?: Date }): Expense {
+    Expense.validate(props as any);
     return new Expense({
       ...props,
+      id: props.id ?? crypto.randomUUID(),
       createdAt: props.createdAt ?? new Date(),
-    });
+    } as ExpenseProps);
   }
 
   // ─── Reconstrução a partir do banco (sem re-validar) ────────

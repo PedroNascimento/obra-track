@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const createExpenseSchema = z.object({
-  type: z.enum(["material", "pedreiro", "servente", "alimentacao", "combustivel", "outro"] as const, "Tipo de despesa inválido ou obrigatório."),
-  categoryId: z.string().uuid("ID de categoria inválido.").nullable().optional(),
+  type: z.enum(["material", "pedreiro", "servente", "alimentacao", "combustivel", "outro"] as const, { errorMap: () => ({ message: "Tipo de despesa inválido ou obrigatório." }) }),
+  categoryId: z.string().uuid("ID de categoria inválido.").nullable().optional().or(z.literal("")).transform(val => val === "" ? null : val),
   description: z
     .string("A descrição é obrigatória.")
     .trim()
