@@ -4,7 +4,7 @@ import { makeContainer } from "@/lib/container";
 import { ok, noContent, unauthorized, notFound, conflict, handleApiError } from "@/lib/api";
 import { Category } from "@/domain/entities";
 
-type Params = { params: { id: string } };
+type Params = { params: Promise<{ id: string }> };
 
 // PUT /api/categories/:id
 export async function PUT(req: NextRequest, { params }: Params) {
@@ -12,7 +12,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
     const userId = req.headers.get("x-user-id");
     if (!userId) return unauthorized();
 
-    const { id } = params;
+    const { id } = await params;
     const body = await req.json();
     const dto = updateCategorySchema.parse(body);
 
@@ -47,7 +47,7 @@ export async function DELETE(req: NextRequest, { params }: Params) {
     const userId = req.headers.get("x-user-id");
     if (!userId) return unauthorized();
 
-    const { id } = params;
+    const { id } = await params;
     const { categoryRepository } = makeContainer();
 
     const existing = await categoryRepository.findById(id, userId);

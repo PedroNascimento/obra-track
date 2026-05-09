@@ -19,6 +19,7 @@
     "db:push": "prisma db push"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@prisma/client": "^6.19.3",
     "@react-pdf/renderer": "^4.5.1",
     "bcryptjs": "^3.0.3",

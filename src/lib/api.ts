@@ -11,11 +11,11 @@ import { expenseFilterSchema } from "@/application/dtos/expense-filter.dto";
 // ─── Resposta padronizada ─────────────────────────────────────
 
 export function ok<T>(data: T, status = 200) {
-  return NextResponse.json({ data }, { status });
+  return NextResponse.json(data, { status });
 }
 
 export function created<T>(data: T) {
-  return NextResponse.json({ data }, { status: 201 });
+  return NextResponse.json(data, { status: 201 });
 }
 
 export function noContent() {

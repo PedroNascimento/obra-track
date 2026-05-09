@@ -3,7 +3,7 @@ import { updateExpenseSchema } from "@/application/dtos/update-expense.dto";
 import { makeContainer } from "@/lib/container";
 import { ok, noContent, unauthorized, notFound, handleApiError } from "@/lib/api";
 
-type Params = { params: { id: string } };
+type Params = { params: Promise<{ id: string }> };
 
 // GET /api/expenses/:id
 export async function GET(req: NextRequest, { params }: Params) {
@@ -11,7 +11,7 @@ export async function GET(req: NextRequest, { params }: Params) {
     const userId = req.headers.get("x-user-id");
     if (!userId) return unauthorized();
 
-    const { id } = params;
+    const { id } = await params;
     const { expenseRepository } = makeContainer();
     const expense = await expenseRepository.findById(id, userId);
     if (!expense) return notFound("Despesa não encontrada.");
@@ -28,7 +28,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
     const userId = req.headers.get("x-user-id");
     if (!userId) return unauthorized();
 
-    const { id } = params;
+    const { id } = await params;
     const body = await req.json();
     const dto = updateExpenseSchema.parse(body);
 
@@ -55,7 +55,7 @@ export async function DELETE(req: NextRequest, { params }: Params) {
     const userId = req.headers.get("x-user-id");
     if (!userId) return unauthorized();
 
-    const { id } = params;
+    const { id } = await params;
     const { deleteExpense } = makeContainer();
     await deleteExpense.execute({ id, userId });
 

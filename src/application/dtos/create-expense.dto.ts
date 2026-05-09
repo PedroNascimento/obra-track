@@ -9,7 +9,7 @@ export const createExpenseSchema = z.object({
     .min(1, "A descrição é obrigatória.")
     .max(255, "A descrição deve ter no máximo 255 caracteres."),
   amount: z
-    .number("O valor deve ser um número e é obrigatório.")
+    .number({ invalid_type_error: "O valor é obrigatório." })
     .positive("O valor deve ser maior que zero.")
     .max(9_999_999.99, "Valor excede o limite permitido."),
   expenseDate: z
